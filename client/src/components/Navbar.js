@@ -11,16 +11,15 @@ export default function Navbar({ scrolled }) {
     ];
    const navigate=useNavigate()
     return (
-        <div>
+        <div className='text-black'>
              <nav
             className={`fixed top-0 left-0 right-0 z-10 flex items-center justify-between p-4 ${
-                scrolled ? 'bg-white' : 'bg-gray-900'
+                scrolled ? 'bg-black' : 'bg-gray-900'
             }`}
         >
-                <div className=''>
+              
                     <div className=''>
-                        <img src={logo} alt="" className="w-20 h-15" />
-                    </div>
+                        <img src={logo} alt="" className="w-20 ml-2 object-contain" />
                 </div>
                 <ul className="flex space-x-6">
                     {links.map(({ name, link }) => {
