@@ -56,7 +56,7 @@ export default function Signup() {
     <>
       <Header login />
       <div className="w-screen h-screen flex justify-center items-center bg-black">
-        <div className="bg-white rounded-lg p-8 shadow-lg p-14">
+        <div className="bg-white rounded-lg p-8 shadow-lg">
           <h1 className="text-3xl font-bold mb-4">Sign Up</h1>
           <div className="space-y-4">
             <div>

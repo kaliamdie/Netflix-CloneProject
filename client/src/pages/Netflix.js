@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import backgroundImage from '../assets/home.jpg';
-import MovieLogo from '../assets/homeTitle.webp';
-import { useDispatch, useSelector } from 'react-redux';
-import { getGenres, fetch } from '../data';
+// import Navbar from '../components/Navbar';
+// import backgroundImage from '../assets/home.jpg';
+// import MovieLogo from '../assets/homeTitle.webp';
+import { requests } from '../utils/api';
+import Row from '../components/Row';
+import Poster from '../components/Poster';
 
 export default function Netflix() {
     const [scrolled, setScrolled] = useState(false);
@@ -15,17 +16,7 @@ export default function Netflix() {
     };
 
     const history = useNavigate();
-    //data and api
-    const genresLoaded = useSelector((state) => state.netflix.genresLoaded);
-    const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getGenres());
-    }, []);
-
-    useEffect(() => {
-        if (genresLoaded) dispatch(fetch({ type: 'all' }));
-    }, [genresLoaded]);
 
     // const NetflixValid = async () => {
     //     let token = localStorage.getItem("usersdatatoken");
@@ -55,21 +46,40 @@ export default function Netflix() {
     // }, []);
 
     return (
-        <div className="relative">
-            <Navbar scrolled={scrolled} />
-
-            <div className="bg-black h-screen relative overflow-hidden">
+        <div >
+            {/* <Navbar scrolled={scrolled} />
+           
+            <div className="bg-white h-screen relative overflow-hidden">
                 <img
-                    src={backgroundImage}
+                    // src={backgroundImage}
                     alt=""
                     className="object-cover w-full h-full absolute inset-0  brightness-50"
-                />
-
-                <div className="absolute inset-0 flex flex-col items-start justify-center pl-8">
-                    <div className="text-white mb-6">
+                /> */}
+              <Poster/>  
+  {/* row */}
+  <div>
+            <Row title={"Netflix Originals"} fetchUrl={requests.fetchNetflixOriginals}
+            isLarge
+            />
+            {/* <Row title={"Top Rated"} fetchUrl={requests.fetchTopRated}/> */}
+            <Row title={"Trending Now"} fetchUrl={requests.fetchTrending}/>
+            <Row title={"Animation"} fetchUrl={requests.fetchAnimation}/>
+            <Row title={"Comdey Movie "} fetchUrl={requests.fetchComedyMovies}/>
+            <Row title={"Horror Movie"} fetchUrl={requests.fetchHorrorMovies}/>
+            <Row title={"Action Movie"} fetchUrl={requests.fetchActionMovies}/>
+            <Row title={"Thriller"} fetchUrl={requests.fetchThriller}/>
+          
+            
+          
+         
+            </div>
+            {/* */}    
+                {/* <div className="absolute inset-0 flex flex-col items-start justify-center pl-8">
+                    {/* <div className="text-white mb-6">
                         <img src={MovieLogo} alt="" className=" mt-20 w-2/9" />
-                    </div>
-
+                    </div> */}
+                     
+{/*            
                     <button
                         onClick={() => history('/player')}
                         className="bg-white text-black mb-2"
@@ -107,8 +117,8 @@ export default function Netflix() {
                         </svg>
                         More Info
                     </button>
-                </div>
-            </div>
+                </div>  */}
+            {/* </div> */}
         </div>
     );
 }

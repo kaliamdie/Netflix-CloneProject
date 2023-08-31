@@ -20,7 +20,7 @@ export default function Header(props) {
             >
                 <Link to="/login">Log In</Link>
             </button> */}
-              <button onClick={() => navigate(props.login ? "/login" : "/signup")}>
+              <button className='text-white' onClick={() => navigate(props.login ? "/login" : "/signup")}>
         {props.login ? "Log In" : "Sign Up"}
       </button>
         </div>

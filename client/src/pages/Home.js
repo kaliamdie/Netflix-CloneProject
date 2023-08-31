@@ -8,7 +8,24 @@ export default function Home() {
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!validateEmail(email) && !email) {
+      alert('Please enter a valid email address');
+      return;
+    }
+    
+  };
 
+  const validateEmail = (email) => {
+    const regex = /\S+@\S+\.\S+/;
+    return regex.test(email);
+  };
+  // const handleClick=()=>{
+  //   if(!email){
+  //     alert("please enter your email address")
+  //   }
+  // }
   return (
 
     <div className="relative w-screen h-screen overflow-hidden">
@@ -19,7 +36,7 @@ export default function Home() {
         alt=""
       />
       <div className="absolute top-0 right-0 mt-4 mr-4">
-        <button className="bg-red p-3 rounded-md text-white hover:bg-red-dark focus:outline-none focus:ring-2 focus:ring-red">
+        <button className=" p-4 rounded-xl bg-red-600 text-white hover:bg-red-dark focus:outline-none focus:ring-2 focus:ring-red">
         <Link to="/signup">sign up</Link>
         </button>
       </div>
@@ -35,6 +52,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col space-y-4 items-center mt-4">
             <div className="flex space-x-2">
+              <form onSubmit={handleSubmit}>
               <input
                 type="email"
                 id="email"
@@ -43,9 +61,10 @@ export default function Home() {
                 placeholder='Enter your email'
                 onChange={handleEmailChange}
               />
-              <button className="bg-red p-3 rounded-md text-white hover:bg-red-dark focus:outline-none focus:ring-2 focus:ring-red">
+              <button className=" p-3 rounded-md text-white bg-red-600 hover:bg-red-dark focus:outline-none focus:ring-2 focus:ring-red">
                 <Link to={email ? "/login" : "#"}>Get Started</Link>
               </button>
+              </form>
             </div>
           </div>
         </div>

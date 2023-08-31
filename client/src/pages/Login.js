@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import Header from "../components/Header";
 function Login() {
   const history=useNavigate()
@@ -80,7 +80,13 @@ function Login() {
                 <br /><br />
               
                 <button onClick={loginUser}className='block bg-black text-white hover:bg-blue-600 text-black text-center px-4 py-2 rounded' >Log In</button>
-           
+                <p className="mt-2">
+  Don't have an account?
+  <Link to="/signup" className="text-decoration-underline ml-1">
+    Sign Up
+  </Link>
+</p>
+
             </form>
     </div>
     </div>
