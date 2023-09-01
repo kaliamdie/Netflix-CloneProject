@@ -19,18 +19,18 @@ export default function Navbar({ scrolled }) {
         >
               
                     <div className=''>
-                        <img src={logo} alt="" className="w-20 ml-2 object-contain" />
+                        <img src={logo} alt="" className="w-28  object-contain" />
                 </div>
                 <ul className="flex space-x-6">
                     {links.map(({ name, link }) => {
                         return (
                             <li key={name}>
-                                <Link to={link} className="text-white hover:text-blue-500 transition">{name}</Link>
+                                <Link to={link} className="text-white hover:text-red-600 transition">{name}</Link>
                             </li>
                         );
                     })}
                 </ul>
-                <div className=''>
+                <div className='flex items-center'>
                     <div className="relative">
                         <input
                             type="text"
@@ -47,7 +47,7 @@ export default function Navbar({ scrolled }) {
 
                         </div>
                     </div>
-                    <button onClick={()=>navigate("/login")} className="text-black hover:text-blue-500 transition ml-4">
+                    <button onClick={()=>navigate("/login")} className="text-white p-3 bg-red-600 rounded-md hover:text-blue-500 transition ml-4">
                      sign out
                     </button>
                 </div>

@@ -5,7 +5,7 @@ import Netflix from "./pages/Netflix";
 import Error from "./pages/Error";
 import Home from "./pages/Home";
 import SignOut from "./pages/SignOut";
-import Player from "./pages/Player";
+
 
 
 
@@ -17,7 +17,7 @@ function App() {
       <Route path="/" element={<Home/>} />
 <Route path="/netflix" element={<Netflix/>}/>
 <Route path="/signout" element={<SignOut/>}/>
-<Route path="/player" element={<Player/>}/>
+
 <Route path="*" element={<Error/>} />
       <Route path="/signup" element={<Signup/>}/>
       <Route path="/login" element={<Login/>}/>
