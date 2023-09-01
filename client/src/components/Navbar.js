@@ -47,7 +47,7 @@ export default function Navbar({ scrolled }) {
 
                         </div>
                     </div>
-                    <button onClick={()=>navigate("/login")} className="text-white p-3 bg-red-600 rounded-md hover:text-blue-500 transition ml-4">
+                    <button onClick={()=>navigate("/")} className="text-white p-3 bg-red-600 rounded-md hover:text-blue-500 transition ml-4">
                      sign out
                     </button>
                 </div>
