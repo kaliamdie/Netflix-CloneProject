@@ -39,7 +39,7 @@ if(!validator.isEmail(value)){
             }
         }
     ]
-})
+},{ timestamps: true })
 //token generate
 userSchema.methods.generateAuthtoken=async function (){
     try {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
   const [inpval, setInpval] = useState({
@@ -25,6 +26,7 @@ export default function Signup() {
     const { fname, lname, email, password } = inpval;
 
     if (fname === "" || email === "" || lname === "" || password === "") {
+      
       alert("Please fill all fields");
     } else {
       const data = await fetch("/signup", {
@@ -41,7 +43,9 @@ export default function Signup() {
       });
 
       if (!data.ok) {
+        console.log("error")
         throw new Error("Network response was not ok");
+      
       }
 
       const res = await data.json();
@@ -116,7 +120,7 @@ export default function Signup() {
             onClick={addUserdata}
             className="mt-4 bg-black text-white hover:bg-blue-600 text-center px-4 py-2 rounded"
           >
-            Sign Up
+           <Link > Sign Up</Link>
           </button>
         </div>
       </div>

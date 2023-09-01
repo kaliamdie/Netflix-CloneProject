@@ -13,6 +13,7 @@ router.post("/signup",async(req,res)=>{
 const preuser= await userdb.findOne({email:email})
 if(preuser){
     res.status(422).json({error:"email already exist"})
+    alert("Email already exists.")
 }else{
   const finalUser = new userdb({
     fname,

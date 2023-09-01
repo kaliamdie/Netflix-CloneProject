@@ -15,35 +15,35 @@ export default function Netflix() {
     };
 
 
-    // const history = useNavigate();
+    const history = useNavigate();
 
 
-    // const NetflixValid = async () => {
-    //     let token = localStorage.getItem("usersdatatoken");
+    const NetflixValid = async () => {
+        let token = localStorage.getItem("usersdatatoken");
 
-    //     const res = await fetch("/validuser", {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Authorization": token
-    //         }
-    //     });
+        const res = await fetch("/validuser", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            }
+        });
 
-    //     const data = await res.json();
-
-    //     if (data.status == 401 || !data) {
-    //         history("*");
-    //     } else {
-    //         console.log("user verified");
+        const data = await res.json();
+      
+        if (data.status === 401 || !data) {
+            history("*");
+        } else {
+            console.log("user verified");
          
-    //         history("/netflix");
-    //     }
-    // }
+            history("/netflix");
+        }
+    }
 
       
-    // useEffect(() => {
-    //     NetflixValid();
-    // }, []);
+    useEffect(() => {
+        NetflixValid();
+    }, []);
    
     return (
         <div className='bg-black'>

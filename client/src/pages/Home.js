@@ -19,20 +19,20 @@ return (
   <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
     <div className="body flex flex-col items-center justify-center mt-30">
       <div className="text flex flex-col">
-        <h1 className="m-auto font-bold text-4xl text-center">
+        <h1 className="m-auto font-bold text-5xl text-center">
           Unlimited movies,<br /> TV shows and more
         </h1>
-        <h4 className="m-auto text-xl mt-3 text-center">
+        <h4 className="m-auto text-2xl mt-3 text-center">
           Watch anywhere. Cancel anytime.
         </h4>
-        <h6 className="mt-4 text-center mb-5">
+        <h6 className="mt-4 text-xl text-center mb-5">
           Ready to watch? Enter your email to create membership
         </h6>
       </div>
       <div className="flex flex-col space-y-4 items-center mt-4">
         <div className="flex space-x-2">
-        <div className="absolute top-0 right-0 mt-4 mr-4">
-       <Link  className=" p-4 rounded-xl bg-red-600 text-white hover:bg-red-dark focus:outline-none focus:ring-2 focus:ring-red"
+        <div className="absolute top-0 right-0 mt-7 mr-4">
+       <Link  className=" mt-4 p-4 rounded-xl bg-red-600 text-white hover:bg-red-dark focus:outline-none focus:ring-2 focus:ring-red"
        to="/login">Log In</Link>
 
   </div>

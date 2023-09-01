@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from "../assets/logo.png";
 import { Link, useNavigate } from 'react-router-dom';
+import SignOut from '../pages/SignOut';
 
 export default function Navbar({ scrolled }) {
     const links = [
@@ -9,7 +10,7 @@ export default function Navbar({ scrolled }) {
         { name: "Movies", link: "/movies" },
         { name: "My List", link: "/mylist" },
     ];
-   const navigate=useNavigate()
+//    const navigate=useNavigate()
     return (
         <div className='text-black'>
              <nav
@@ -47,9 +48,10 @@ export default function Navbar({ scrolled }) {
 
                         </div>
                     </div>
-                    <button onClick={()=>navigate("/")} className="text-white p-3 bg-red-600 rounded-md hover:text-blue-500 transition ml-4">
+                    <SignOut/>
+                    {/* <button onClick={()=>navigate("/")} className="text-white p-3 bg-red-600 rounded-md hover:text-blue-500 transition ml-4">
                      sign out
-                    </button>
+                    </button> */}
                 </div>
             </nav>
         </div>
