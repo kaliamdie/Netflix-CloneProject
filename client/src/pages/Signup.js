@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  
+  const history=useNavigate()
   const [inpval, setInpval] = useState({
     fname: "",
     lname: "",
@@ -22,40 +24,43 @@ export default function Signup() {
 
   const addUserdata = async (e) => {
     e.preventDefault();
-
+  
     const { fname, lname, email, password } = inpval;
-
+  
     if (fname === "" || email === "" || lname === "" || password === "") {
-      
       alert("Please fill all fields");
     } else {
-      const data = await fetch("/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fname,
-          lname,
-          email,
-          password,
-        }),
-      });
-
-      if (!data.ok) {
-        console.log("error")
-        throw new Error("Network response was not ok");
-      
-      }
-
-      const res = await data.json();
-      if (res.status === 201) {
-        alert("User registration done");
-        setInpval({ ...inpval, fname: "", lname: "", email: "", password: "" });
+      try {
+        const data = await fetch("/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fname,
+            lname,
+            email,
+            password,
+          }),
+        });
+  
+        const res = await data.json();
+        console.log(res); // Log the response from the server
+  
+        if (res.status === 201) {
+        alert("User registration successful"); // Log a success message
+          history("/netflix");
+          localStorage.setItem("usersdatatoken", res.result.token);
+          setInpval({ ...inpval, email: "", password: "" });
+        } else {
+          alert("User registration failed")
+          console.log("User registration failed"); // Log a failure message
+        }
+      } catch (error) {
+        console.error("Error:", error);
       }
     }
   };
-
   return (
     <>
       <Header login />
@@ -117,11 +122,11 @@ export default function Signup() {
             </div>
           </div>
           <button
-            onClick={addUserdata}
-            className="mt-4 bg-black text-white hover:bg-blue-600 text-center px-4 py-2 rounded"
-          >
-           <Link > Sign Up</Link>
-          </button>
+        onClick={addUserdata}
+        className="mt-4 bg-black text-white hover:bg-blue-600 text-center px-4 py-2 rounded"
+      >
+        Sign Up
+      </button>
         </div>
       </div>
     </>

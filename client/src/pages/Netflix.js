@@ -18,6 +18,7 @@ export default function Netflix() {
     const history = useNavigate();
 
 
+  
     const NetflixValid = async () => {
         let token = localStorage.getItem("usersdatatoken");
 
@@ -39,11 +40,12 @@ export default function Netflix() {
             history("/netflix");
         }
     }
-
       
-    useEffect(() => {
+      useEffect(() => {
         NetflixValid();
-    }, []);
+      }, []);
+      
+      
    
     return (
         <div className='bg-black'>

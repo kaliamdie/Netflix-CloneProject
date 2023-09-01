@@ -13,7 +13,7 @@ router.post("/signup",async(req,res)=>{
 const preuser= await userdb.findOne({email:email})
 if(preuser){
     res.status(422).json({error:"email already exist"})
-    alert("Email already exists.")
+
 }else{
   const finalUser = new userdb({
     fname,
@@ -85,7 +85,7 @@ if(preuser){
   router.get("/validuser",authenticate,async(req,res)=>{
 try {
   const ValidUserOne=await userdb.findOne({_id:req.userId})
-  res.status(201).json({ValidUserOne }); 
+  res.status(200).json({ValidUserOne }); 
 } catch (error) {
   res.status(401).json({ error: "Server error" }); 
 }
