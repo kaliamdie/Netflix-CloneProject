@@ -8,11 +8,12 @@ import Poster from '../components/Poster';
 
 export default function Netflix() {
     const [scrolled, setScrolled] = useState(false);
-
+ ;
     window.onscroll = () => {
         setScrolled(window.scrollY === 0 ? false : true);
         return () => (window.onscroll = null);
     };
+
 
     // const history = useNavigate();
 
@@ -43,10 +44,10 @@ export default function Netflix() {
     // useEffect(() => {
     //     NetflixValid();
     // }, []);
-
+   
     return (
         <div className='bg-black'>
-             <Navbar scrolled={scrolled} />
+             <Navbar scrolled={scrolled}  />
            
 
               <Poster/>  
@@ -56,12 +57,12 @@ export default function Netflix() {
             isLarge
             />
             {/* <Row title={"Top Rated"} fetchUrl={requests.fetchTopRated}/> */}
-            <Row title={"Trending Now"} fetchUrl={requests.fetchTrending}/>
-            <Row title={"Animation"} fetchUrl={requests.fetchAnimation}/>
-            <Row title={"Comdey Movie "} fetchUrl={requests.fetchComedyMovies}/>
-            <Row title={"Horror Movie"} fetchUrl={requests.fetchHorrorMovies}/>
-            <Row title={"Action Movie"} fetchUrl={requests.fetchActionMovies}/>
-            <Row title={"Thriller"} fetchUrl={requests.fetchThriller}/>
+            <Row title={"Trending Now"} fetchUrl={requests.fetchTrending} />
+            <Row title={"Animation"} fetchUrl={requests.fetchAnimation} />
+            <Row title={"Comdey Movie "} fetchUrl={requests.fetchComedyMovies} />
+            <Row title={"Horror Movie"} fetchUrl={requests.fetchHorrorMovies} />
+            <Row title={"Action Movie"} fetchUrl={requests.fetchActionMovies} />
+            <Row title={"Thriller"} fetchUrl={requests.fetchThriller} />
           
             
           
