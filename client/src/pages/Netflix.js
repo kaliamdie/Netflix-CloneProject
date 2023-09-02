@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import { requests } from '../utils/api';
 import Row from '../components/Row';
 import Poster from '../components/Poster';
+import TvShows from '../components/TvShows';
 
 export default function Netflix() {
     const [scrolled, setScrolled] = useState(false);
@@ -50,7 +51,7 @@ export default function Netflix() {
     return (
         <div className='bg-black'>
              <Navbar scrolled={scrolled}  />
-           
+      
 
               <Poster/>  
   {/* row */}

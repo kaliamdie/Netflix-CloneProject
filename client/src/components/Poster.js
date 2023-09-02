@@ -20,12 +20,7 @@ export default function Poster() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    // Fetch trailer data when the movie changes
-    if (movie) {
-      fetchTrailerData(movie.id);
-    }
-  }, [movie]);
+
 
   // Fetch trailer data function
   const fetchTrailerData = async (movieId) => {
@@ -48,6 +43,12 @@ export default function Poster() {
       console.error('Error fetching trailer data:', error);
     }
   };
+  useEffect(() => {
+    // Fetch trailer data when the movie changes
+    if (movie) {
+      fetchTrailerData(movie.id);
+    }
+  }, [movie]);
 
   function truncateText(text, maxLength) {
     if (text.length > maxLength) {
@@ -109,7 +110,12 @@ export default function Poster() {
             <div className="mt-4 relative">
               <YouTube
                 videoId={trailerKey}
-                opts={{ width: '560', height: '315' }}
+                opts={{ width: '560', height: '315' ,  playerVars: {
+                  modestbranding: 1, 
+                  rel: 0,
+                  showinfo: 0,
+                },}}  
+              
               />
               <button
                 className="bg-red-600 pt-10 text-white px-2 py-1 rounded absolute top-0 right-0 m-2 z-10"

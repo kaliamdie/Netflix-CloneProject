@@ -3,64 +3,81 @@ import Header from "../components/Header";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
-  
-  const history=useNavigate()
+  const history = useNavigate();
   const [inpval, setInpval] = useState({
     fname: "",
     lname: "",
     email: "",
     password: "",
   });
+  const [error, setError] = useState(null);
+  const [emailError, setEmailError] = useState(null); // New state for email validation error
 
   const setVal = (e) => {
     const { name, value } = e.target;
-    setInpval(() => {
-      return {
-        ...inpval,
-        [name]: value,
-      };
-    });
+    setInpval((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const validateEmail = (email) => {
+    // Regular expression for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
 
   const addUserdata = async (e) => {
     e.preventDefault();
-  
+
     const { fname, lname, email, password } = inpval;
-  
-    if (fname === "" || email === "" || lname === "" || password === "") {
-      alert("Please fill all fields");
+
+    if (fname === "" || lname === "" || password === "") {
+      setError("Please fill in all required fields.");
+      return;
+    }
+
+    // Check if the email is valid
+    if (!validateEmail(email)) {
+      setEmailError("Please enter a valid email address.");
+      return;
     } else {
-      try {
-        const data = await fetch("/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            fname,
-            lname,
-            email,
-            password,
-          }),
-        });
-  
-        const res = await data.json();
-        console.log(res); // Log the response from the server
-  
-        if (res.status === 201) {
-        alert("User registration successful"); // Log a success message
-          history("/netflix");
-          localStorage.setItem("usersdatatoken", res.result.token);
-          setInpval({ ...inpval, email: "", password: "" });
-        } else {
-          alert("User registration failed")
-          console.log("User registration failed"); // Log a failure message
-        }
-      } catch (error) {
-        console.error("Error:", error);
+      setEmailError(null); // Clear the email validation error if it's valid
+    }
+
+    try {
+      const data = await fetch("/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fname,
+          lname,
+          email,
+          password,
+        }),
+      });
+
+      const res = await data.json();
+      console.log(res);
+
+      if (res.status === 201) {
+        alert("User registration successful");
+        // localStorage.setItem("usersdatatoken", res.result.token);
+        setInpval({ fname: "", lname: "", email: "", password: "" });
+        history("/netflix");
+      } else if (res.error === "email already exist") {
+        setError("Email already exists");
+      } else {
+        setError("User registration failed");
+        console.log("User registration failed");
       }
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
+
   return (
     <>
       <Header login />
@@ -101,11 +118,16 @@ export default function Signup() {
                 type="email"
                 id="email"
                 name="email"
-                className="border border-gray-300 p-2 rounded focus:outline-none"
+                className={`border border-gray-300 p-2 rounded focus:outline-none ${
+                  emailError ? "border-red-500" : ""
+                }`} // Apply a border color for email validation error
                 onChange={setVal}
                 value={inpval.email}
                 placeholder="Email"
               />
+              {emailError && (
+                <div className="text-red-500 mt-1">{emailError}</div>
+              )}
             </div>
             <div>
               <label htmlFor="password">Password:</label>
@@ -122,11 +144,14 @@ export default function Signup() {
             </div>
           </div>
           <button
-        onClick={addUserdata}
-        className="mt-4 bg-black text-white hover:bg-blue-600 text-center px-4 py-2 rounded"
-      >
-        Sign Up
-      </button>
+            onClick={addUserdata}
+            className="mt-4 bg-black text-white hover:bg-blue-600 text-center px-4 py-2 rounded"
+          >
+            Sign Up
+          </button>
+          {error && (
+            <div className="text-red-500 mt-2">{error}</div>
+          )}
         </div>
       </div>
     </>

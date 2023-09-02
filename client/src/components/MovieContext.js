@@ -15,9 +15,9 @@ export const MovieProvider = ({ children }) => {
 
   // Define genre URLs as an array
   const genres = [
-    '/discover/movie?api_key=YOUR_API_KEY&with_genres=28', // Action
-    '/discover/movie?api_key=YOUR_API_KEY&with_genres=35', // Comedy
-    '/discover/movie?api_key=YOUR_API_KEY&with_genres=27', // Horror
+` /discover/movie?api_key=${API_KEY}&with_genres=28`, // Action
+  ` /discover/movie?api_key=${API_KEY}&with_genres=35`, // Comedy
+` /discover/movie?api_key=${API_KEY}&with_genres=27`, // Horror
     // Add more genres as needed
   ];
 
@@ -26,18 +26,14 @@ export const MovieProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
+      
         const request = await axios.get(
           `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`
         );
         // Set loading to false after data is fetched
         setLoading(false);
         // Set movies data in your state here
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        // Set loading to false in case of an error
-        setLoading(false);
-      }
+    
     };
 
     fetchData();

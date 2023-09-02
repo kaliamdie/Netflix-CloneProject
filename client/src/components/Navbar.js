@@ -8,11 +8,12 @@ export default function Navbar({ scrolled }) {
         { name: "Home", link: "/" },
         { name: "Tv Shows", link: "/tv" },
         { name: "Movies", link: "/movies" },
-        { name: "My List", link: "/mylist" },
-    ];
+        // { name: "My List", link: "/mylist" },
+    ];    
 //    const navigate=useNavigate()
     return (
         <div className='text-black'>
+       
              <nav
             className={`fixed top-0 left-0 right-0 z-10 flex items-center justify-between p-4 ${
                 scrolled ? 'bg-black' : 'bg-gray-900'
