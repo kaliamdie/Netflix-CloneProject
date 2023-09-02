@@ -65,7 +65,7 @@ export default function Poster() {
 
   const closeTrailer = () => {
     setIsVideoVisible(false);
-    setTrailerKey(null);
+
   };
 
   return (
