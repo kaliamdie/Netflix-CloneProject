@@ -2,7 +2,7 @@ const mongoose=require("mongoose")
 const validator=require("validator")
 const bcrypt=require("bcryptjs")
 const jwt=require("jsonwebtoken")
-const keysecret="ldsjjvbhkdfhbxmvcnkshckjhes"
+
 const Schema=mongoose.Schema
 const userSchema=new  Schema({
     fname:{
@@ -43,7 +43,7 @@ if(!validator.isEmail(value)){
 //token generate
 userSchema.methods.generateAuthtoken=async function (){
     try {
-        let token2 = jwt.sign({ _id: this._id,} ,keysecret , { expiresIn: "1d" });
+        let token2 = jwt.sign({ _id: this._id,} ,process.env.JWT_SECRET , { expiresIn: "1d" });
         this.tokens = this.tokens.concat({ token: token2 });
         await this.save();
         return token2; // Corrected the variable name here

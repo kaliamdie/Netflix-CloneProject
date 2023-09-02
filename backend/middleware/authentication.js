@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const userdb = require("../models/userSchema");
-const keysecret = "ldsjjvbhkdfhbxmvcnkshckjhes";
+// const keysecret = "ldsjjvbhkdfhbxmvcnkshckjhes";
 
 const authenticate = async (req, res, next) => {
   try {
@@ -11,7 +11,7 @@ const authenticate = async (req, res, next) => {
       return res.status(403).json({ status: 403, message: "Forbidden, no token provided." });
     }
 
-    const verifyToken = jwt.verify(token, keysecret);
+    const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
     const rootUser = await userdb.findOne({ _id: verifyToken._id });
 
     if (!rootUser) {
