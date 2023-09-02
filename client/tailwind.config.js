@@ -26,10 +26,7 @@ module.exports = {
         serif: ['Merriweather', 'serif'],
       },
       content: {
-        // brush: "url('./assets/brush.png')",
-        // person1: "url('./assets/profile-image.png')",
-        // person2: "url('./assets/person-2.png')",
-        // person3: "url('./assets/person-3.png')",
+
       },
     },
     screens: {
