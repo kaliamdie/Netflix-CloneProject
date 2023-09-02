@@ -19,7 +19,7 @@ function App() {
 <Route path="/netflix" element={<Netflix/>}/>
 <Route path="/signout" element={<SignOut/>}/>
 
-<Route path="*" element={<Error/>} />
+<Route path="/error" element={<Error/>} />
       <Route path="/signup" element={<Signup/>}/>
       <Route path="/login" element={<Login/>}/>
     </Routes>

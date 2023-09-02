@@ -34,7 +34,7 @@ export default function Netflix() {
         const data = await res.json();
       
         if (data.status === 401 || !data) {
-            history("*");
+            history("/error");
         } else {
             console.log("user verified");
          

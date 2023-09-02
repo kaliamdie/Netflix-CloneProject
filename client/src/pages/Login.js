@@ -8,7 +8,7 @@ function Login() {
     email: "",
     password: "",
   });
-  const [error, setError] = useState(""); // Add error state
+  const [error, setError] = useState(""); 
 
   const setVal = (e) => {
     const { name, value } = e.target;
@@ -23,12 +23,12 @@ function Login() {
   const loginUser = async (e) => {
     e.preventDefault();
     const { email, password } = inpval;
-
+  
     if (email === "" || password === "") {
-      alert("Please fill all fields");
+      setError("Please fill all fields"); // Set the error message directly
       return;
     }
-
+  
     const data = await fetch("/login", {
       method: "POST",
       headers: {
@@ -39,18 +39,18 @@ function Login() {
         password,
       }),
     });
-
+  
     const res = await data.json();
     console.log(res);
     if (res.status === 201) {
       history("/netflix");
       localStorage.setItem("usersdatatoken", res.result.token);
       setInpval({ ...inpval, email: "", password: "" });
-    } else if (res.error === "User not found") {
-      setError("Invalid email or password"); // Set the error message
+    } else if (res.error === "Incorrect password" || res.error === "User not found") {
+      setError("Incorrect email or password"); // Set the error message for both scenarios
     }
   };
-
+  
   return (
     <>
       <Header />

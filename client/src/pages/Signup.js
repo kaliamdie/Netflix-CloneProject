@@ -33,50 +33,51 @@ export default function Signup() {
     const { fname, lname, email, password } = inpval;
 
     if (fname === "" || lname === "" || password === "") {
-      setError("Please fill in all required fields.");
-      return;
+        setError("Please fill in all required fields.");
+        return;
     }
 
     // Check if the email is valid
     if (!validateEmail(email)) {
-      setEmailError("Please enter a valid email address.");
-      return;
+        setEmailError("Please enter a valid email address.");
+        return;
     } else {
-      setEmailError(null); // Clear the email validation error if it's valid
+        setEmailError(null); // Clear the email validation error if it's valid
     }
 
     try {
-      const data = await fetch("/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fname,
-          lname,
-          email,
-          password,
-        }),
-      });
+        const data = await fetch("/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fname,
+                lname,
+                email,
+                password,
+            }),
+        });
 
-      const res = await data.json();
-      console.log(res);
+        const res = await data.json();
+        console.log(res);
 
-      if (res.status === 201) {
-        alert("User registration successful");
-        // localStorage.setItem("usersdatatoken", res.result.token);
-        setInpval({ fname: "", lname: "", email: "", password: "" });
-        history("/netflix");
-      } else if (res.error === "email already exist") {
-        setError("Email already exists");
-      } else {
-        setError("User registration failed");
-        console.log("User registration failed");
-      }
+        if (res.status === 201) {
+          // localStorage.setItem("usersdatatoken", res.result.token);
+          alert("User registration successful");
+          setInpval({ fname: "", lname: "", email: "", password: "" });
+          history("/netflix"); // Try this simple redirection
+        
+        } else if (res.error === 'email already exist') {
+            setError("Email is already registered. Please use a different email.");
+        } else {
+            setError("User registration failed");
+            console.log("User registration failed");
+        }
     } catch (error) {
-      console.error("Error:", error);
+        console.error("Error:", error);
     }
-  };
+};
 
   return (
     <>
