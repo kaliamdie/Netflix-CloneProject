@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from '../utils/axios';
 import { API_KEY, requests } from '../utils/api';
 import YouTube from 'react-youtube';
+import { Link } from 'react-router-dom';
 
 export default function Poster() {
   const [movie, setMovie] = useState(null);
@@ -19,8 +20,6 @@ export default function Poster() {
   useEffect(() => {
     fetchData();
   }, []);
-
-
 
   // Fetch trailer data function
   const fetchTrailerData = async (movieId) => {
@@ -43,6 +42,7 @@ export default function Poster() {
       console.error('Error fetching trailer data:', error);
     }
   };
+
   useEffect(() => {
     // Fetch trailer data when the movie changes
     if (movie) {
@@ -58,7 +58,7 @@ export default function Poster() {
   }
 
   const playTrailer = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (trailerKey) {
       setIsVideoVisible(true);
     }
@@ -66,31 +66,27 @@ export default function Poster() {
 
   const closeTrailer = () => {
     setIsVideoVisible(false);
-
   };
 
   return (
     <header
-      className="text-white "
+      className="text-white"
       style={{
-    
-        objectFit:"contain",
-        height:"448px",
+        objectFit: 'contain',
+        height: '448px',
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie?.backdrop_path})`,
-      //  backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center center', // Adjust to fit your image
-    backgroundSize: 'cover', 
+        backgroundPosition: 'center center',
+        backgroundSize: 'cover',
       }}
     >
       {movie && (
-        <div className=""
-        style={{
-          marginLeft:"30px",
-          paddingTop:"140px",
-          height:"190px"
-
-      
-      }}
+        <div
+          className=""
+          style={{
+            marginLeft: '30px',
+            paddingTop: '140px',
+            height: '190px',
+          }}
         >
           <h1 className="mb-4 text-5xl font-bold max-w-md">
             {movie.name || movie.title || movie.original_name}
@@ -103,7 +99,7 @@ export default function Poster() {
               Play
             </button>
             <button className="bg-gray-800 text-white px-4 py-2 rounded">
-           More Info
+              <Link to={`/more-info/${movie.id}`}>More Info</Link>
             </button>
           </div>
           <div
@@ -117,19 +113,22 @@ export default function Poster() {
             }}
           >
             <p className="text-gray-300 leading-relaxed">
-              {truncateText(movie.overview, 200)}
+              {truncateText(movie.overview, 120)}
             </p>
           </div>
           {isVideoVisible && trailerKey && (
             <div className="mt-4 relative">
               <YouTube
                 videoId={trailerKey}
-                opts={{ width: '560', height: '315' ,  playerVars: {
-                  modestbranding: 1, 
-                  rel: 0,
-                  showinfo: 0,
-                },}}  
-              
+                opts={{
+                  width: '560',
+                  height: '315',
+                  playerVars: {
+                    modestbranding: 1,
+                    rel: 0,
+                    showinfo: 0,
+                  },
+                }}
               />
               <button
                 className="bg-red-600 pt-10 text-white px-2 py-1 rounded absolute top-0 right-0 m-2 z-10"
