@@ -71,13 +71,27 @@ export default function Poster() {
 
   return (
     <header
-      className="text-white relative bg-contain h-96"
+      className="text-white "
       style={{
+    
+        objectFit:"contain",
+        height:"448px",
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie?.backdrop_path})`,
+      //  backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center center', // Adjust to fit your image
+    backgroundSize: 'cover', 
       }}
     >
       {movie && (
-        <div className="absolute bottom-0 left-0 p-10">
+        <div className=""
+        style={{
+          marginLeft:"30px",
+          paddingTop:"140px",
+          height:"190px"
+
+      
+      }}
+        >
           <h1 className="mb-4 text-5xl font-bold max-w-md">
             {movie.name || movie.title || movie.original_name}
           </h1>

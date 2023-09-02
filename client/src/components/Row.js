@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useRef } from 'react';
 import axios from '../utils/axios';
 import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
 import { API_KEY } from '../utils/api';
-
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'; 
 export default function Row({ title, fetchUrl, isLarge }) {
+  const scrollRef = useRef(null);
   const base_url = 'https://image.tmdb.org/t/p/original/';
   const [movies, setMovies] = useState([]);
   const [trailer, setTrailer] = useState(null);
   const [movie, setMovie] = useState({ title: 'Loading Movies' });
   const [currentVideoId, setCurrentVideoId] = useState(null); // Tracking current video ID
+
+  const [scrollPosition, setScrollPosition] = useState(0); // Track scroll position
 
   const fetchData = async () => {
     const request = await axios.get(fetchUrl);
@@ -26,6 +29,8 @@ export default function Row({ title, fetchUrl, isLarge }) {
     width: '640',
     playerVars: {
       autoplay: 1,
+      showinfo: 0,
+      rel: 0,
     },
   };
 
@@ -42,41 +47,77 @@ export default function Row({ title, fetchUrl, isLarge }) {
     }
     setMovie(data);
   };
-
+  // to Pause the currently playing video
   const selectMovie = (movie) => {
     if (currentVideoId) {
-      // Pause the currently playing video
+    
       setTrailer(null);
       setCurrentVideoId(null);
     }
     if (!trailer || movie.id !== trailer.key) {
       fetchMovie(movie.id);
       setMovie(movie);
-      setCurrentVideoId(movie.id); // Set the current video ID
-      // window.scrollTo(0, 0);
-    }else if(trailer){
-     setTrailer("")
+      setCurrentVideoId(movie.id); // Set the current video ID which is on the background
+    } else if (trailer) {
+      setTrailer('');
+    }
+  };
+
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft -= 200;
+      setScrollPosition(scrollRef.current.scrollLeft); 
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft += 200; 
+      setScrollPosition(scrollRef.current.scrollLeft); 
     }
   };
 
   return (
-    <div className='text-white'>
-      <h2 className='text-center font-bold text-2xl'>{title}</h2>
-      <div className='ml-20'>
-        <div className='flex justify-center overflow-y-hidden overflow-x-scroll whitespace-nowrap overflow-auto scrollbar-hide p-20'>
+    <div className="text-white">
+      <h2 className="text-center font-bold text-2xl">{title}</h2>
+      <div className="ml-20 relative">
+        <div
+          className="flex overflow-x-scroll p-20 scrollbar-hide"
+          ref={scrollRef}
+          onScroll={(e) => setScrollPosition(e.target.scrollLeft)} 
+        >
           {movies.map((movie) => (
             <img
-              key={movie.id}
-              className={`mr-10 w-40 object-contain transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 hover:bg-gray-100 ${
-                isLarge && 'max-h-screen hover:translate-x-1'
-              }`}
-              src={`${base_url}${isLarge ? movie.poster_path : movie.backdrop_path}`}
-              alt={movie.name}
-              onClick={() => selectMovie(movie)}
-            />
-          ))}
+            key={movie.id}
+            className={`mr-10 w-40 object-contain transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 hover:bg-gray-100 
+            
+            `}
+            src={`${base_url}${isLarge ? movie.poster_path :  movie.backdrop_path}`}
+
+            alt={movie.name}
+            onClick={() => selectMovie(movie)}
+          />
+        ))}
         </div>
         {trailer && <YouTube videoId={trailer.key} opts={opts} />}
+        {/* Scroll buttons */}
+        {scrollPosition > 0 && ( 
+          <button
+            className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-900 bg-opacity-50 p-2 rounded-full text-white cursor-pointer hover:bg-opacity-75"
+            onClick={scrollLeft}
+          >
+            <ChevronLeftIcon className="h-9 w-9 bg-white text-black hover:bg-black hover:text-white" />
+          </button>
+        )}
+        {scrollRef.current &&
+          scrollPosition < scrollRef.current.scrollWidth - scrollRef.current.clientWidth && (
+            <button
+              className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-900 bg-opacity-50 p-2 rounded-full text-white cursor-pointer hover:bg-opacity-75"
+              onClick={scrollRight}
+            >
+              <ChevronRightIcon className="h-9 w-9 bg-white text-black hover:bg-black hover:text-white" />
+            </button>
+          )}
       </div>
     </div>
   );

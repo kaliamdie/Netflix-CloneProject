@@ -1,16 +1,9 @@
 import React from 'react';
 import logo from "../assets/logo.png";
-import { Link, useNavigate } from 'react-router-dom';
+
 import SignOut from '../pages/SignOut';
 
 export default function Navbar({ scrolled }) {
-    const links = [
-        { name: "Home", link: "/" },
-        { name: "Tv Shows", link: "/tv" },
-        { name: "Movies", link: "/movies" },
-        // { name: "My List", link: "/mylist" },
-    ];    
-//    const navigate=useNavigate()
     return (
         <div className='text-black'>
        
@@ -23,15 +16,7 @@ export default function Navbar({ scrolled }) {
                     <div className=''>
                         <img src={logo} alt="" className="w-28  object-contain" />
                 </div>
-                <ul className="flex space-x-6">
-                    {links.map(({ name, link }) => {
-                        return (
-                            <li key={name}>
-                                <Link to={link} className="text-white hover:text-red-600 transition">{name}</Link>
-                            </li>
-                        );
-                    })}
-                </ul>
+              
                 <div className='flex items-center'>
                     <div className="relative">
                         <input
@@ -50,9 +35,7 @@ export default function Navbar({ scrolled }) {
                         </div>
                     </div>
                     <SignOut/>
-                    {/* <button onClick={()=>navigate("/")} className="text-white p-3 bg-red-600 rounded-md hover:text-blue-500 transition ml-4">
-                     sign out
-                    </button> */}
+                 
                 </div>
             </nav>
         </div>

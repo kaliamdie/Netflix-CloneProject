@@ -57,7 +57,7 @@ export default function Netflix() {
   {/* row */}
   <div>
             <Row title={"Netflix Originals"} fetchUrl={requests.fetchNetflixOriginals}
-            isLarge
+            isLarge={true}
             />
             {/* <Row title={"Top Rated"} fetchUrl={requests.fetchTopRated}/> */}
             <Row title={"Trending Now"} fetchUrl={requests.fetchTrending} />
