@@ -63,22 +63,21 @@ export default function Signup() {
         console.log(res);
 
         if (res.status === 201) {
-          // localStorage.setItem("usersdatatoken", res.result.token);
-          alert("User registration successful");
-          setInpval({ fname: "", lname: "", email: "", password: "" });
-          history("/netflix"); // Try this simple redirection
-        
-        } else if (res.error === 'email already exist') {
-            setError("Email is already registered. Please use a different email.");
-        } else {
-            setError("User registration failed");
-            console.log("User registration failed");
+          // Check if res.result is defined before accessing token
+          if (res.result && res.result.token) {
+            localStorage.setItem("usersdatatoken", res.result.token);
+          }
+          setInpval({ ...inpval, email: "", password: "", fname: "", lname: "" });
+          history("/netflix");
+        } else if (res.error === "Incorrect password" || res.error === "User not found") {
+          setError("Incorrect email or password");
         }
-    } catch (error) {
-        console.error("Error:", error);
+        
+        
+      }catch(error){
+        console.log(error)
+      }
     }
-};
-
   return (
     <>
       <Header login />

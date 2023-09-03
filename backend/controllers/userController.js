@@ -4,36 +4,34 @@ const userdb = require('../models/userSchema');
 
 
 
-
 exports.signup = async (req, res) => {
-    const {fname,lname,password,email}=req.body
-    if(!fname|| !lname|| !password|| !email){
-      res.status(422).json({error:"fill all the details"})
-    }
-    try{
-  const preuser= await userdb.findOne({email:email})
-  if(preuser){
-      res.status(422).json({error:"email already exist"})
-  
-  }else{
-    const finalUser = new userdb({
-      fname,
-      lname,
-      email,
-      password
-  });
-  
-  
-      const storeData=await finalUser.save()
-      res.status(201).json({status:201,storeData});
-      // console.log(storeData)
-  
+  const { fname, lname, password, email } = req.body;
+  if (!fname || !lname || !password || !email) {
+    res.status(422).json({ error: "Fill in all the details" });
   }
-    } catch (error) {
-      console.error(error); // Log the actual error for debugging purposes
-      res.status(500).json({ error: "Server error" }); // Send a generic error response to the client
+  try {
+    const preuser = await userdb.findOne({ email: email });
+    if (preuser) {
+      res.status(422).json({ error: "Email already exists" });
+    } else {
+      const finalUser = new userdb({
+        fname,
+        lname,
+        email,
+        password,
+      });
+
+      // Generate a token and send it in the response
+      const token = jwt.sign({ _id: finalUser._id }, process.env.JWT_SECRET);
+      const storeData = await finalUser.save();
+      res.status(201).json({ status: 201, result: { token } });
     }
-     };
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+
      exports.login = async (req, res) => {
         const { password, email } = req.body;
       

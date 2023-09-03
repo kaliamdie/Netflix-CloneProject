@@ -29,8 +29,8 @@ export default function MoreInfoModalPage() {
             api_key: API_KEY,
           },
         });
-        console.log('Cast and Crew Data:', response.data); // Debugging statement
-        setCastAndCrew(response.data.cast); // Assuming you want the cast members
+        console.log('Cast and Crew Data:', response.data); 
+        setCastAndCrew(response.data.cast); 
       } catch (error) {
         console.error('Error fetching cast and crew:', error);
       }
