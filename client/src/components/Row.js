@@ -106,7 +106,7 @@ export default function Row({ title, fetchUrl, isLarge }) {
         {showVideo && trailer && (
           <div className="relative">
             <button
-              className="absolute top-2 right-2 z-10 text-white bg-red-500 rounded-full p-2"
+              className=" top-2 right-2 z-10 text-white bg-red-500 rounded-full p-2"
               onClick={toggleVideo}
             >
               X
