@@ -84,14 +84,28 @@ export default function Row({ title, fetchUrl, isLarge }) {
     }
   };
 
-   return (
+  return (
     <div className="text-white">
-      <h2 className="text-center font-bold text-2xl">{title}</h2>
+     <h2 className="text-center font-bold text-2xl">{title}</h2>
+      {showVideo && trailer && (
+        <div className="relative text-center"> {/* Center the video */}
+          <button
+            className="top-2 right-2 z-10 text-white bg-red-500 rounded-full p-2"
+            onClick={toggleVideo}
+          >
+            X
+          </button>
+          <div className="inline-block"> {/* Center the video */}
+            <YouTube videoId={trailer.key} opts={opts} />
+          </div>
+        </div>
+      )}
+      
       <div className="ml-20 relative">
         <div
           className="flex overflow-x-scroll p-20 scrollbar-hide"
           ref={scrollRef}
-          onScroll={(e) => setScrollPosition(e.target.scrollLeft)} 
+          onScroll={(e) => setScrollPosition(e.target.scrollLeft)}
         >
           {movies.map((movie) => (
             <img
@@ -103,21 +117,8 @@ export default function Row({ title, fetchUrl, isLarge }) {
             />
           ))}
         </div>
-        {showVideo && trailer && (
-          <div className="relative">
-            <button
-              className=" top-2 right-2 z-10 text-white bg-red-500 rounded-full p-2"
-              onClick={toggleVideo}
-            >
-              X
-            </button>
-            <div style={{ position: 'relative' }}>
-              <YouTube videoId={trailer.key} opts={opts} />
-            </div>
-          </div>
-        )}
         {/* Scroll buttons */}
-        {scrollPosition > 0 && ( 
+        {scrollPosition > 0 && (
           <button
             className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-900 bg-opacity-50 p-2 rounded-full text-white cursor-pointer hover:bg-opacity-75"
             onClick={scrollLeft}

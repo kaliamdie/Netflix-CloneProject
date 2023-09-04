@@ -95,8 +95,8 @@ function Login() {
             {error && <p className="text-red-500 mt-2">{error}</p>}
             <p className="mt-2">
               Don't have an account?
-              <Link to="/signup" className="text-decoration-underline ml-1">
-                Sign Up
+              <Link to="/signup" className="text-decoration-underline ml-1 text-sky-800 underline">
+              Sign Up
               </Link>
             </p>
           </form>

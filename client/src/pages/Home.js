@@ -19,15 +19,13 @@ return (
   <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
     <div className="body flex flex-col items-center justify-center mt-30">
       <div className="text flex flex-col">
-        <h1 className="m-auto font-bold text-5xl text-center">
-          Unlimited movies,<br /> TV shows and more
+        <h1 className="m-auto font-bold text-5xl text-center pb-5">
+        See What's Next
         </h1>
-        <h4 className="m-auto text-2xl mt-3 text-center">
-          Watch anywhere. Cancel anytime.
+        <h4 className="m-auto text-2xl mt-3 text-center pb-4">
+          WATCH ANYWHERE.CANCEL ANYTIME
         </h4>
-        <h6 className="mt-4 text-xl text-center mb-5">
-          Ready to watch? Enter your email to create membership
-        </h6>
+  
       </div>
       <div className="flex flex-col space-y-4 items-center mt-4">
         <div className="flex space-x-2">
@@ -44,7 +42,7 @@ return (
               // onClick={handleClick}
               className=" px-6 py-4 rounded-md text-white bg-red-600 hover:bg-red-dark focus:outline-none focus:ring-2 focus:ring-red"
             >
-              Get Started
+           Watch Free For 30 Days 
             </Link>
           </form>
         </div>
