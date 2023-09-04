@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../utils/axios';
 import { API_KEY, requests } from '../utils/api';
-import YouTube from 'react-youtube';
 import { Link } from 'react-router-dom';
+import YouTube from 'react-youtube';
 
 export default function Poster() {
   const [movie, setMovie] = useState(null);
@@ -70,7 +70,7 @@ export default function Poster() {
 
   return (
     <header
-      className="text-white"
+      className="text-white relative"
       style={{
         objectFit: 'contain',
         height: '448px',
@@ -92,50 +92,59 @@ export default function Poster() {
             {movie.name || movie.title || movie.original_name}
           </h1>
           <div className="flex items-center space-x- cursor-pointer">
-            <button
-              className="bg-red-600 text-white px-4 py-2 rounded"
-              onClick={playTrailer}
-            >
-              Play
-            </button>
+            <div>
+              {/* Conditionally render the YouTube video */}
+              {trailerKey && isVideoVisible && (
+                <div className="relative">
+                  <button
+                    className="bg-red-600 text-white px-2 py-1 rounded absolute top-0 right-0 m-2 z-10"
+                    onClick={closeTrailer}
+                  >
+                    X
+                  </button>
+                  <YouTube
+                    videoId={trailerKey}
+                    opts={{
+                      width: '560',
+                      height: '315',
+                      playerVars: {
+                        modestbranding: 1, // Remove YouTube branding
+                        rel: 0,
+                        showinfo: 0,
+                        autoplay: 1, // Autoplay the video
+                      },
+                    }}
+                    style={{paddingTop:"300"}}
+                  />
+                </div>
+              )}
+              {!isVideoVisible && (
+                <button
+                  className="bg-red-600 text-white px-4 py-2 rounded"
+                  onClick={playTrailer}
+                >
+                  Play
+                </button>
+              )}
+            </div>
             <button className="bg-gray-800 text-white px-4 py-2 rounded">
               <Link to={`/more-info/${movie.id}`}>More Info</Link>
             </button>
           </div>
-          <div
-            className="mt-4 shadow-md"
-            style={{
-              width: '45rem',
-              lineHeight: '1.3',
-              paddingTop: '1rem',
-              fontSize: '0.9rem',
-              maxWidth: '360px',
-            }}
-          >
-            <p className="text-gray-300 leading-relaxed">
-              {truncateText(movie.overview, 120)}
-            </p>
-          </div>
-          {isVideoVisible && trailerKey && (
-            <div className="mt-4 relative">
-              <YouTube
-                videoId={trailerKey}
-                opts={{
-                  width: '560',
-                  height: '315',
-                  playerVars: {
-                    modestbranding: 1,
-                    rel: 0,
-                    showinfo: 0,
-                  },
-                }}
-              />
-              <button
-                className="bg-red-600 pt-10 text-white px-2 py-1 rounded absolute top-0 right-0 m-2 z-10"
-                onClick={closeTrailer}
-              >
-                X
-              </button>
+          {!isVideoVisible && (
+            <div
+              className="mt-4 shadow-md"
+              style={{
+                width: '45rem',
+                lineHeight: '1.3',
+                paddingTop: '1rem',
+                fontSize: '0.9rem',
+                maxWidth: '360px',
+              }}
+            >
+              <p className="text-gray-300 leading-relaxed">
+                {truncateText(movie.overview, 120)}
+              </p>
             </div>
           )}
         </div>

@@ -42,7 +42,7 @@ export default function Netflix() {
 
   useEffect(() => {
     NetflixValid();
-  });
+  },[]);
 
   return (
     <div className='bg-black'>
