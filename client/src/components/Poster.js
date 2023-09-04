@@ -95,7 +95,7 @@ export default function Poster() {
             <div>
               {/* Conditionally render the YouTube video */}
               {trailerKey && isVideoVisible && (
-                <div className="relative">
+                <div className="relative" style={{ paddingTop: '0', position: 'relative' }}>
                   <button
                     className="bg-red-600 text-white px-2 py-1 rounded absolute top-0 right-0 m-2 z-10"
                     onClick={closeTrailer}
@@ -114,7 +114,7 @@ export default function Poster() {
                         autoplay: 1, // Autoplay the video
                       },
                     }}
-                    style={{paddingTop:"300"}}
+                 style={{paddingTop:"100"}}
                   />
                 </div>
               )}
@@ -137,7 +137,7 @@ export default function Poster() {
               style={{
                 width: '45rem',
                 lineHeight: '1.3',
-                paddingTop: '1rem',
+                paddingTop: '200',
                 fontSize: '0.9rem',
                 maxWidth: '360px',
               }}
@@ -151,4 +151,5 @@ export default function Poster() {
       )}
     </header>
   );
+
 }
