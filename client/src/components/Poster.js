@@ -69,87 +69,88 @@ export default function Poster() {
   };
 
   return (
-    <header
-      className="text-white relative"
-      style={{
-        objectFit: 'contain',
-        height: '448px',
-        backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie?.backdrop_path})`,
-        backgroundPosition: 'center center',
-        backgroundSize: 'cover',
-      }}
-    >
-      {movie && (
-        <div
-          className=""
-          style={{
-            marginLeft: '30px',
-            paddingTop: '140px',
-            height: '190px',
-          }}
-        >
-          <h1 className="mb-4 text-5xl font-bold max-w-md">
-            {movie.name || movie.title || movie.original_name}
-          </h1>
-          <div className="flex items-center space-x- cursor-pointer">
-            <div>
-              {/* Conditionally render the YouTube video */}
-              {trailerKey && isVideoVisible && (
-                <div className="relative" style={{ paddingTop: '0', position: 'relative' }}>
+    <div>
+      <header
+        className="text-white relative"
+        style={{
+          objectFit: 'contain',
+          height: '448px',
+          backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie?.backdrop_path})`,
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
+        }}
+      >
+        {movie && (
+          <div
+            className=""
+            style={{
+              marginLeft: '30px',
+              paddingTop: '140px',
+              height: '190px',
+            }}
+          >
+            <h1 className="mb-4 text-5xl font-bold max-w-md">
+              {movie.name || movie.title || movie.original_name}
+            </h1>
+            <div className="flex items-center space-x- cursor-pointer">
+              <div>
+                {/* Conditionally render the YouTube video */}
+                {!isVideoVisible && (
                   <button
-                    className="bg-red-600 text-white px-2 py-1 rounded absolute top-0 right-0 m-2 z-10"
-                    onClick={closeTrailer}
+                    className="bg-red-600 text-white px-4 py-2 rounded"
+                    onClick={playTrailer}
                   >
-                    X
+                    Play
                   </button>
-                  <YouTube
-                    videoId={trailerKey}
-                    opts={{
-                      width: '560',
-                      height: '315',
-                      playerVars: {
-                        modestbranding: 1, // Remove YouTube branding
-                        rel: 0,
-                        showinfo: 0,
-                        autoplay: 1, // Autoplay the video
-                      },
-                    }}
-                 style={{paddingTop:"100"}}
-                  />
-                </div>
-              )}
-              {!isVideoVisible && (
-                <button
-                  className="bg-red-600 text-white px-4 py-2 rounded"
-                  onClick={playTrailer}
-                >
-                  Play
-                </button>
-              )}
+                )}
+              </div>
+              <button className="bg-gray-800 text-white px-4 py-2 rounded">
+                <Link to={`/more-info/${movie.id}`}>More Info</Link>
+              </button>
             </div>
-            <button className="bg-gray-800 text-white px-4 py-2 rounded">
-              <Link to={`/more-info/${movie.id}`}>More Info</Link>
+            {!isVideoVisible && (
+              <div
+                className="mt-4 shadow-md"
+                style={{
+                  width: '45rem',
+                  lineHeight: '1.3',
+                  paddingTop: '200',
+                  fontSize: '0.9rem',
+                  maxWidth: '360px',
+                }}
+              >
+                <p className="text-gray-300 leading-relaxed">
+                  {truncateText(movie.overview, 120)}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+      </header>
+      {trailerKey && isVideoVisible && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black flex justify-center items-center">
+          <div className="relative" style={{ width: '100%', maxWidth: '80%',paddingBottom:"190px" }}>
+            <YouTube
+              videoId={trailerKey}
+              opts={{
+                width: '100%',
+                playerVars: {
+                  modestbranding: 1, // Remove YouTube branding
+                  rel: 0,
+                  showinfo: 0,
+                  autoplay: 1, // Autoplay the video
+                },
+              }}
+            />
+            <button
+              className="bg-red-600 text-white px-2 py-1 rounded absolute top-0 right-0 m-2 z-10"
+              onClick={closeTrailer}
+            >
+              X
             </button>
           </div>
-          {!isVideoVisible && (
-            <div
-              className="mt-4 shadow-md"
-              style={{
-                width: '45rem',
-                lineHeight: '1.3',
-                paddingTop: '200',
-                fontSize: '0.9rem',
-                maxWidth: '360px',
-              }}
-            >
-              <p className="text-gray-300 leading-relaxed">
-                {truncateText(movie.overview, 120)}
-              </p>
-            </div>
-          )}
         </div>
       )}
-    </header>
+    </div>
   );
-
 }

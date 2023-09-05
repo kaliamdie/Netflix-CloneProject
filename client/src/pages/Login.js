@@ -67,7 +67,7 @@ function Login() {
               id="email"
               name="email"
               placeholder="Email Address"
-              className="border border-black w-full px-3 py-2 rounded"
+              className="border text-white border-black w-full px-3 py-2 rounded"
               value={inpval.email}
               onChange={setVal}
             />
