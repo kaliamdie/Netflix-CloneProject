@@ -18,6 +18,8 @@ To get started with this Netflix clone frontend, follow the steps below:
    ```bash 
     cd netflix-clone-frontend
 on your terminal.
+
+
 3. Install the necessary dependencies:
 
 
