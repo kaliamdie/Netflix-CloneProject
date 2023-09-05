@@ -11,7 +11,8 @@ export default function Signup() {
     password: "",
   });
   const [error, setError] = useState(null);
-  const [emailError, setEmailError] = useState(null); // New state for email validation error
+  const [emailError, setEmailError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null); // New state for success message
 
   const setVal = (e) => {
     const { name, value } = e.target;
@@ -22,7 +23,6 @@ export default function Signup() {
   };
 
   const validateEmail = (email) => {
-    // Regular expression for email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
@@ -33,57 +33,60 @@ export default function Signup() {
     const { fname, lname, email, password } = inpval;
 
     if (fname === "" || lname === "" || password === "") {
-        setError("Please fill in all required fields.");
-        return;
+      setError("Please fill in all required fields.");
+      return;
     }
 
-    // Check if the email is valid
     if (!validateEmail(email)) {
-        setEmailError("Please enter a valid email address.");
-        return;
+      setEmailError("Please enter a valid email address.");
+      return;
     } else {
-        setEmailError(null); // Clear the email validation error if it's valid
+      setEmailError(null);
     }
 
     try {
-        const data = await fetch("/signup", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                fname,
-                lname,
-                email,
-                password,
-            }),
-        });
+      const data = await fetch("/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fname,
+          lname,
+          email,
+          password,
+        }),
+      });
 
-        const res = await data.json();
-        console.log(res);
+      const res = await data.json();
 
-        if (res.status === 201) {
-          // Check if res.result is defined before accessing token
-          if (res.result && res.result.token) {
-            localStorage.setItem("usersdatatoken", res.result.token);
-          }
-          setInpval({ ...inpval, email: "", password: "", fname: "", lname: "" });
-          history("/netflix");
-        } else if (res.error === "Incorrect password" || res.error === "User not found") {
-          setError("Incorrect email or password");
+      if (res.status === 201) {
+        if (res.result && res.result.token) {
+          localStorage.setItem("usersdatatoken", res.result.token);
         }
-        
-        
-      }catch(error){
-        console.log(error)
+        setInpval({ ...inpval, email: "", password: "", fname: "", lname: "" });
+        setSuccessMessage("User registered successfully!"); 
+        setTimeout(() => {
+          setSuccessMessage(null); 
+          history("/netflix");
+        }, 2000); 
+      } else if (res.error === "Incorrect password" || res.error === "User not found") {
+        setError("Incorrect email or password");
       }
+    } catch (error) {
+      console.log(error);
     }
+  };
+
   return (
     <>
       <Header login />
       <div className="w-screen h-screen flex justify-center items-center bg-black">
         <div className="bg-white rounded-lg p-20 shadow-lg">
           <h1 className="text-3xl font-bold mb-4">Sign Up</h1>
+          {successMessage && (
+            <div className="text-green-500 mb-4">{successMessage}</div>
+          )}
           <div className="space-y-4">
             <div>
               <label htmlFor="fname">First Name:</label>
@@ -120,7 +123,7 @@ export default function Signup() {
                 name="email"
                 className={`border border-gray-300 p-2 rounded focus:outline-none ${
                   emailError ? "border-red-500" : ""
-                }`} // Apply a border color for email validation error
+                }`}
                 onChange={setVal}
                 value={inpval.email}
                 placeholder="Email"

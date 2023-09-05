@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Login from "./Login";
+import Header from "../components/Header";
 
 export default function Home() {
   const [signin, setSignin] = useState(false);
@@ -17,6 +18,8 @@ export default function Home() {
 
       <div className="absolute top-0 left-0 mt-4 ml-4">
         <img src={logo} alt="Netflix Logo" className="w-32 h-16" />
+
+      
       </div>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
         {signin ? (
