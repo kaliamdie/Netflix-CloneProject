@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Login from "./Login";
-import Header from "../components/Header";
+
 
 export default function Home() {
   const [signin, setSignin] = useState(false);
@@ -10,6 +10,7 @@ export default function Home() {
   
   return (
     <div className="relative w-screen h-screen overflow-hidden">
+    
       <img
         className="object-cover w-full h-full absolute inset-0"
         src="https://www.okynemedialab.com/wp-content/uploads/2019/11/netflix-background-50-Black-1024x576.jpg"

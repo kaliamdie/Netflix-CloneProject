@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Header from "../components/Header";
+
 import { Link, useNavigate } from "react-router-dom";
+
 
 export default function Signup() {
   const history = useNavigate();
@@ -12,7 +13,7 @@ export default function Signup() {
   });
   const [error, setError] = useState(null);
   const [emailError, setEmailError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(null); // New state for success message
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const setVal = (e) => {
     const { name, value } = e.target;
@@ -21,6 +22,7 @@ export default function Signup() {
       [name]: value,
     }));
   };
+
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -68,7 +70,7 @@ export default function Signup() {
         setSuccessMessage("User registered successfully!"); 
         setTimeout(() => {
           setSuccessMessage(null); 
-          history("/netflix");
+          history("/netflix")
         }, 2000); 
       } else if (res.error === "Incorrect password" || res.error === "User not found") {
         setError("Incorrect email or password");
@@ -80,7 +82,7 @@ export default function Signup() {
 
   return (
     <>
-      <Header login />
+    
       <div className="w-screen h-screen flex justify-center items-center bg-black">
         <div className="bg-white rounded-lg p-20 shadow-lg">
           <h1 className="text-3xl font-bold mb-4">Sign Up</h1>
