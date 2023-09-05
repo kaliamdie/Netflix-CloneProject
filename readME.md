@@ -13,9 +13,9 @@ To get started with this Netflix clone frontend, follow the steps below:
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone <https://github.com/kaliamdie/Netflix-CloneProject.git>
+   git clone https://github.com/kaliamdie/Netflix-CloneProject.git
 2. open this ```bash 
-```cd netflix-clone-frontend```
+cd netflix-clone-frontend
  on your terminal.
 3.  ```npm install```
 4. Start the development server:
