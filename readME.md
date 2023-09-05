@@ -18,7 +18,8 @@ To get started with this Netflix clone frontend, follow the steps below:
    ```bash 
     cd netflix-clone-frontend
  on your terminal.
-3.  ```bash
+3.  
+   ```bash
    npm install
 4.  Start the development server:
     ```bash 
@@ -54,7 +55,10 @@ User Authentication is a component of the application that handles user registra
 - MongoDB 
 - bcrypt (for password hashing)
 - JSON Web Tokens (JWT) for authentication
-
+## Resources
+- [stackoverflow](https://stackoverflow.com/)
+- [GeeksforGeeks](https://www.geeksforgeeks.org/basic-authentication-in-node-js-using-http-header/)
+- [freecodecamp](https://www.freecodecamp.org/news/tag/authentication/)
 ## Features
 
 - **User Registration**: Users can create new accounts by providing their first name, last name, email, and password. Passwords are securely hashed before storage.
