@@ -18,14 +18,11 @@ To get started with this Netflix clone frontend, follow the steps below:
    ```bash 
     cd netflix-clone-frontend
  on your terminal.
-3.  To install
-
-   ```bash
-   npm install
-4.  Start the development server:
-
-   ```bash
-  npm start
+3.  ```bash
+  npm install
+4. Start the development server:
+    ```bash 
+    npm start
 ## Fetaures
 - User Authentication: Users can sign up and log in to the application.
 - Netflix page: The netflix page displays a selection of movie and TV show content.
@@ -57,10 +54,7 @@ User Authentication is a component of the application that handles user registra
 - MongoDB 
 - bcrypt (for password hashing)
 - JSON Web Tokens (JWT) for authentication
-## Resources
-- [stackoverflow](https://stackoverflow.com/)
-- [GeeksforGeeks](https://www.geeksforgeeks.org/basic-authentication-in-node-js-using-http-header/)
-- [freecodecamp](https://www.freecodecamp.org/news/tag/authentication/)
+
 ## Features
 
 - **User Registration**: Users can create new accounts by providing their first name, last name, email, and password. Passwords are securely hashed before storage.
@@ -71,7 +65,7 @@ User Authentication is a component of the application that handles user registra
 
 To set up and use the User Authentication component, follow these steps:
 
-<!-- 1. Clone this repository to your local machine.
+1. Clone this repository to your local machine.
 
 2. Install the required dependencies using the following command:
 
@@ -82,4 +76,4 @@ To set up and use the User Authentication component, follow these steps:
 4. 
    ```bash 
    nodemon server
- -->
+
