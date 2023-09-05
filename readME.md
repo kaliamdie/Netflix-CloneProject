@@ -35,6 +35,8 @@ cd netflix-clone-frontend
 ## Techonolgies used
 - React
 - Tailwind
+## API
+-[ TMDB API](https://developer.themoviedb.org/docs)
 # Netflix clone backend
 # User Authentication Component
 
@@ -67,7 +69,7 @@ To set up and use the User Authentication component, follow these steps:
    ```bash
    npm install
 3.  start the server 
-   ```bash 
+  
+4.  ```bash 
    nodemon server
-4. 
 
