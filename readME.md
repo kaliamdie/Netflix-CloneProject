@@ -18,7 +18,7 @@ To get started with this Netflix clone frontend, follow the steps below:
    ```bash 
     cd netflix-clone-frontend
  on your terminal.
-3.  
+3.  To install
    ```bash
    npm install
 4.  Start the development server:
