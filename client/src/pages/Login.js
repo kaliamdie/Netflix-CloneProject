@@ -8,7 +8,7 @@ function Login() {
     email: "",
     password: "",
   });
-  const [error, setError] = useState(""); 
+  const [error, setError] = useState("");
 
   const setVal = (e) => {
     const { name, value } = e.target;
@@ -23,12 +23,12 @@ function Login() {
   const loginUser = async (e) => {
     e.preventDefault();
     const { email, password } = inpval;
-  
+
     if (email === "" || password === "") {
-      setError("Please fill all fields"); // Set the error message directly
+      setError("Please fill all fields");
       return;
     }
-  
+
     const data = await fetch("/login", {
       method: "POST",
       headers: {
@@ -39,7 +39,7 @@ function Login() {
         password,
       }),
     });
-  
+
     const res = await data.json();
     console.log(res);
     if (res.status === 201) {
@@ -47,62 +47,64 @@ function Login() {
       localStorage.setItem("usersdatatoken", res.result.token);
       setInpval({ ...inpval, email: "", password: "" });
     } else if (res.error === "Incorrect password" || res.error === "User not found") {
-      setError("Incorrect email or password"); // Set the error message for both scenarios
+      setError("Incorrect email or password");
     }
   };
-  
+
   return (
-    <>
-      <Header />
-      <div className="flex items-center justify-center min-h-screen bg-white">
-        <div className="bg-gray-800 p-8 rounded shadow-md w-full max-w-md">
-          <h1 className="text-3xl font-semibold text-black mb-4 text-center">
-            Log In
-          </h1>
-          <form>
-            <br />
-            <br />
-            <label htmlFor="email">Email:</label>
-            <br />
+    <div className="flex justify-center items-center h-screen">
+      <div className="bg-gray-800 p-6 rounded shadow-md max-w-xs w-full" style={{ background: "rgba(0, 0, 0, 0.85)" }}>
+        <h1 className="text-3xl font-semibold text mb-4 text-center text-white">
+          Log In
+        </h1>
+        <form>
+          <div className="mb-4">
+            <label htmlFor="email" className="text-white">
+              Email:
+            </label>
             <input
               type="email"
               id="email"
               name="email"
-              className="border border-black"
+              placeholder="Email Address"
+              className="border border-black w-full px-3 py-2 rounded"
               value={inpval.email}
               onChange={setVal}
             />
-            <br />
-            <br />
-            <label htmlFor="password">Password:</label>
-            <br />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="text-white">
+              Password:
+            </label>
             <input
               type="password"
               id="password"
+              placeholder="Password"
               name="password"
-              className="border border-black"
+              className="border border-black w-full px-3 py-2 rounded text-black"
               value={inpval.password}
               onChange={setVal}
             />
-            <br />
-            <br />
-            <button
-              onClick={loginUser}
-              className="block bg-black hover:bg-blue-600 text-white text-center px-4 py-2 rounded"
+          </div>
+          <button
+            onClick={loginUser}
+            className="block bg-red-600 hover:bg-red-700 text-white text-center px-4 py-2 rounded w-full"
+          >
+            Log In
+          </button>
+          {error && <p className="text-red-500 mt-2">{error}</p>}
+          <p className="mt-4 text-white">
+            Don't have an account?
+            <Link
+              to="/signup"
+              className="text-decoration-underline ml-1 text-white underline"
             >
-              Log In
-            </button>
-            {error && <p className="text-red-500 mt-2">{error}</p>}
-            <p className="mt-2">
-              Don't have an account?
-              <Link to="/signup" className="text-decoration-underline ml-1 text-sky-800 underline">
               Sign Up
-              </Link>
-            </p>
-          </form>
-        </div>
+            </Link>
+          </p>
+        </form>
       </div>
-    </>
+    </div>
   );
 }
 

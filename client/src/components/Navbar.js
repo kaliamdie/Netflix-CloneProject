@@ -72,7 +72,7 @@ export default function Navbar({ scrolled }) {
           key={result.id}
           title={result.title}
           posterPath={`https://image.tmdb.org/t/p/w500/${result.poster_path}`}
-          movieId={result.id} // Pass the movieId prop
+          movieId={result.id} 
         />
         
           ))}

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function SearchResult({ title, posterPath, movieId }) {
   return (
     <div className="flex items-center mb-2">
-      <Link to={`/moreinfo/${movieId}`}> {/* Link to the more info page */}
+      <Link to={`/moreinfo/${movieId}`}> 
         <img
           src={posterPath}
           alt={title}
