@@ -71,7 +71,7 @@ User Authentication is a component of the application that handles user registra
 
 To set up and use the User Authentication component, follow these steps:
 
-1. Clone this repository to your local machine.
+<!-- 1. Clone this repository to your local machine.
 
 2. Install the required dependencies using the following command:
 
@@ -82,4 +82,4 @@ To set up and use the User Authentication component, follow these steps:
 4. 
    ```bash 
    nodemon server
-
+ -->
