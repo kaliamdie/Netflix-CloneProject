@@ -14,14 +14,15 @@ To get started with this Netflix clone frontend, follow the steps below:
 
    ```bash
    git clone https://github.com/kaliamdie/Netflix-CloneProject.git
-2. open this ```bash 
-cd netflix-clone-frontend
+2. open this 
+   ```bash 
+    cd netflix-clone-frontend
  on your terminal.
 3.  ```bash
-npm install
-4. Start the development server:
+   npm install
+4.  Start the development server:
     ```bash 
-npm start
+    npm start
 ## Fetaures
 - User Authentication: Users can sign up and log in to the application.
 - Netflix page: The netflix page displays a selection of movie and TV show content.
