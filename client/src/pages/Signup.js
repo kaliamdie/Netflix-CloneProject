@@ -150,7 +150,7 @@ export default function Signup() {
           </div>
           <button
             onClick={addUserdata}
-            className="mt-4 bg-black text-white hover:bg-blue-600 text-center px-4 py-2 rounded"
+            className="mt-4 bg-red-600  text-white hover:bg-blue-600 text-center px-8 py-4 rounded"
           >
             Sign Up
           </button>

@@ -87,19 +87,20 @@ export default function Row({ title, fetchUrl, isLarge }) {
   return (
     <div className="text-white">
      <h2 className="text-center font-bold text-2xl">{title}</h2>
-      {showVideo && trailer && (
-        <div className="relative text-center"> {/* Center the video */}
-          <button
-            className="top-2 right-2 z-10 text-white bg-red-500 rounded-full p-2"
-            onClick={toggleVideo}
-          >
-            X
-          </button>
-          <div className="inline-block"> {/* Center the video */}
-            <YouTube videoId={trailer.key} opts={opts} />
-          </div>
-        </div>
-      )}
+     {showVideo && trailer && (
+  <div className="relative text-center">
+    <div className="inline-block relative">
+      <button
+        className="absolute top-2 right-2 z-10 text-white bg-red-500 rounded-full p-2"
+        onClick={toggleVideo}
+      >
+        X
+      </button>
+      <YouTube videoId={trailer.key} opts={opts} />
+    </div>
+  </div>
+)}
+
       
       <div className="ml-20 relative">
         <div
