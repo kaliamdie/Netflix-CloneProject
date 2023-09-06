@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 export default function Signup() {
+  
   const history = useNavigate();
   const [inpval, setInpval] = useState({
     fname: "",
@@ -31,21 +32,21 @@ export default function Signup() {
 
   const addUserdata = async (e) => {
     e.preventDefault();
-
+  
     const { fname, lname, email, password } = inpval;
-
+  
     if (fname === "" || lname === "" || password === "") {
       setError("Please fill in all required fields.");
       return;
     }
-
+  
     if (!validateEmail(email)) {
       setEmailError("Please enter a valid email address.");
       return;
     } else {
       setEmailError(null);
     }
-
+  
     try {
       const data = await fetch("https://netflix-clone-enaf.onrender.com/signup", {
         method: "POST",
@@ -59,9 +60,9 @@ export default function Signup() {
           password,
         }),
       });
-
+    
       const res = await data.json();
-
+    
       if (res.status === 201) {
         if (res.result && res.result.token) {
           localStorage.setItem("usersdatatoken", res.result.token);
@@ -70,16 +71,21 @@ export default function Signup() {
         setSuccessMessage("User registered successfully!"); 
         setTimeout(() => {
           setSuccessMessage(null); 
-          history("/netflix")
+          history("/netflix");
         }, 2000); 
+      } else if (res.status === 422) {
+        // Check if the error message contains information about an existing email
+        if (res.error && res.error.includes("email already exists")) {
+          setEmailError("User with this email already exists");
+        } else {
+          setError("An error occurred while signing up");
+        }
       } else if (res.error === "Incorrect password" || res.error === "User not found") {
         setError("Incorrect email or password");
       }
     } catch (error) {
       console.log(error);
-    }
-  };
-
+    }}
   return (
     <>
     

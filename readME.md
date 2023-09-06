@@ -85,4 +85,5 @@ To set up and use the User Authentication component, follow these steps:
 4. 
    ```bash 
    nodemon server
-
+## Live Demo
+- [NetflixClone](https://netflix-project.onrender.com/)
