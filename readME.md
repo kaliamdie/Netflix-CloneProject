@@ -1,6 +1,9 @@
 
 ## Netflix Project
 The Netflix Clone Project is a full-stack web application that allows users to browse a collection of popular streaming movies and TV shows. This project includes both frontend and backend components and offers features such as viewing details about specific titles and watching trailers.
+
+## Live Demo
+- [NetflixClone](https://netflix-project.onrender.com/)
    ## Home
 ![screenshot](home.png)
    ## Sign Up
@@ -93,5 +96,3 @@ To set up and use the User Authentication component, follow these steps:
 4. 
    ```bash 
    nodemon server
-## Live Demo
-- [NetflixClone](https://netflix-project.onrender.com/)
