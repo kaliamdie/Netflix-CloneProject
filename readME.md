@@ -2,7 +2,7 @@
 ## Netflix Project
 The Netflix Clone Project is a full-stack web application that allows users to browse a collection of popular streaming movies and TV shows. This project includes both frontend and backend components and offers features such as viewing details about specific titles and watching trailers.
 
-[screenshot](signup.png)
+![screenshot](signup.png)
 # Netflix Clone Frontend
 
 This is the frontend part of a Netflix clone application built with React. It allows users to sign up, log in. Users can also watch trailer and view details about specific titles.
