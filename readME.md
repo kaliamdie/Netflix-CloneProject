@@ -6,7 +6,7 @@ The Netflix Clone Project is a full-stack web application that allows users to b
 - [NetflixClone](https://netflix-project.onrender.com/)
    ## Home
 ![screenshot](home.png)
-   ## SignUp and Log In
+   ## Sign Up 
 ![screenshot](login.png)
 
   ## Netflix
