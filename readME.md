@@ -6,7 +6,7 @@ The Netflix Clone Project is a full-stack web application that allows users to b
 - [NetflixClone](https://netflix-project.onrender.com/)
    ## Home
 ![screenshot](home.png)
-   ## Log In
+   ## Log In and Sign Up
 ![screenshot](signup.png)
 
   ## Netflix
@@ -56,7 +56,7 @@ on your terminal.
 ## API
 -[ TMDB API](https://developer.themoviedb.org/docs)
 # Netflix clone backend
-# User Authentication Component
+The backend part of the Netflix Clone Project handles user authentication and interaction with external APIs for data retrieval.
 
 ## Overview
 
@@ -76,15 +76,16 @@ User Authentication is a component of the application that handles user registra
 
 ## Features
 
-- **User Registration**: Users can create new accounts by providing their first name, last name, email, and password. Passwords are securely hashed before storage.
-
-- **User Login**: Registered users can log in using their email and password. Upon successful login, they receive a JWT token.
-
+- User Registration: Users can create new accounts by providing their first name, last name, email, and password. Passwords are securely hashed before storage.
+- User Login: Registered users can log in using their email and password. Upon successful login, they receive a JWT token.
 ## Setup and Usage
 
 To set up and use the User Authentication component, follow these steps:
 
 1. Clone this repository to your local machine.
+  ```bash
+  cd Netflix-CloneProject
+  cd backend
 
 2. Install the required dependencies using the following command:
 
@@ -92,6 +93,6 @@ To set up and use the User Authentication component, follow these steps:
    npm install
 3.  start the server 
   
-4. 
+
    ```bash 
    nodemon server
