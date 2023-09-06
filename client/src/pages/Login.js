@@ -29,7 +29,7 @@ function Login() {
       return;
     }
 
-    const data = await fetch("/login", {
+    const data = await fetch("https://netflix-clone-enaf.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

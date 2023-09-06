@@ -22,7 +22,7 @@ export default function Netflix() {
       return; // Return early to avoid making the fetch request
     }
 
-    const res = await fetch("/validuser", {
+    const res = await fetch("https://netflix-clone-enaf.onrender.com/validuser", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

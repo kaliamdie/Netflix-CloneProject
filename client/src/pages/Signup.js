@@ -47,7 +47,7 @@ export default function Signup() {
     }
 
     try {
-      const data = await fetch("/signup", {
+      const data = await fetch("https://netflix-clone-enaf.onrender.com/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
