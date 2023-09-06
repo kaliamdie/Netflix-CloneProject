@@ -83,18 +83,18 @@ User Authentication is a component of the application that handles user registra
 To set up and use the User Authentication component, follow these steps:
 
 1. Clone this repository to your local machine.
-  ```bash
-  cd Netflix-CloneProject
+  ```
+  cd Netflix-CloneProject```
 2. 
   ``` cd backend```
  
 
 3. Install the required dependencies using the following command:
 
-   ```bash
-   npm install
+   ```
+   npm install```
 4.  start the server 
   
 
-   ```bash 
-   nodemon server
+   ```
+   nodemon server```
