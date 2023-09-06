@@ -85,13 +85,14 @@ To set up and use the User Authentication component, follow these steps:
 1. Clone this repository to your local machine.
   ```bash
   cd Netflix-CloneProject
+2. ```bash
   cd backend
 
-2. Install the required dependencies using the following command:
+3. Install the required dependencies using the following command:
 
    ```bash
    npm install
-3.  start the server 
+4.  start the server 
   
 
    ```bash 
