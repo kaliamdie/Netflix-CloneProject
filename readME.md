@@ -86,8 +86,8 @@ To set up and use the User Authentication component, follow these steps:
   ```bash
   cd Netflix-CloneProject
 2. 
-   ```bash
-  cd backend
+  ``` cd backend```
+ 
 
 3. Install the required dependencies using the following command:
 
