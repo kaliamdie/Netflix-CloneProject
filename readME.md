@@ -1,6 +1,6 @@
 
 ## Netflix Project
-The Netflix Clone Project is a full-stack web application that allows users to browse a collection of popular streaming movies and TV shows. This project includes both frontend and backend components and offers features such as viewing details about specific titles and watching trailers.
+The Netflix Clone Project is a full-stack web application that allows users to browse a collection of popular streaming movies This project includes both frontend and backend components and offers features such as viewing details about specific titles and watching trailers.
 
 
    ## Home
@@ -44,7 +44,7 @@ on your terminal.
    ``` npm start```
 ## Fetaures
 - User Authentication: Users can sign up and log in to the application.
-- Netflix page: The netflix page displays a selection of movie and TV show content.
+- Netflix page: The netflix page displays a selection of movie.
 - Content Details: Users can click on a more info button to view more details and when user click the poster it also display the trailer.
 - Responsive Design: The application is designed to work on both desktop and mobile devices.
 - Access Requirement: When a user try to enter the Netflix page without signing in, users are directed to take necessary actions, either signing up or logging in, to gain the access.
