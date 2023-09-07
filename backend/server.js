@@ -12,13 +12,7 @@ const router = require("./routes/router");
 app.use(express.json());
 app.use(cookieParser());
 
-const corsOptions = {
-    origin: "http://localhost:3000", // Replace with your development server's URL
-    credentials: true, // Include cookies and other credentials in the request
-  };
-  
-  app.use(cors(corsOptions));
-  
+app.use(cors());
 
 // Connect to the database
 connectDB();
