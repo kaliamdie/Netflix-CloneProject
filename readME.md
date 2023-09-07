@@ -47,7 +47,7 @@ on your terminal.
 - Netflix page: The netflix page displays a selection of movie.
 - Content Details: Users can click on a more info button to view more details and when user click the poster it also display the trailer.
 - Responsive Design: The application is designed to work on both desktop and mobile devices.
-- Access Requirement: When a user try to enter the Netflix page without signing in, users are directed to take necessary actions, either signing up or logging in, to gain the access.
+
 # usage
 - Sign Up: Click on the "Sign Up" button and fill in your details to create an account.
 - Log In: Click on the "Log In" button and provide your email and password to access your account.
