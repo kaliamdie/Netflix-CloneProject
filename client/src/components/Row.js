@@ -49,7 +49,7 @@ export default function Row({ title, fetchUrl, isLarge }) {
     setMovie(data);
   };
 
-  // Function to toggle video visibility
+
   const toggleVideo = () => {
     setShowVideo(!showVideo);
   };
@@ -62,7 +62,7 @@ export default function Row({ title, fetchUrl, isLarge }) {
     if (!trailer || movie.id !== trailer.key) {
       fetchMovie(movie.id);
       setMovie(movie);
-      setCurrentVideoId(movie.id); // Set the current video ID which is on the background
+      setCurrentVideoId(movie.id); 
       setShowVideo(true); // Show the video when a movie is selected
     } else if (trailer) {
       setTrailer('');

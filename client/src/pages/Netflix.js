@@ -19,7 +19,7 @@ export default function Netflix() {
 
     if (!token) {
       history("/error"); // Redirect to the home page if token is missing
-      return; // Return early to avoid making the fetch request
+      return; 
     }
 
     const res = await fetch("https://netflix-clone-enaf.onrender.com/validuser", {
