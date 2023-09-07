@@ -6,16 +6,13 @@ const userdb = require('../models/userSchema');
 
 exports.signup = async (req, res) => {
   const { fname, lname, password, email } = req.body;
-
   if (!fname || !lname || !password || !email) {
-    return res.status(422).json({ error: "Fill in all the details" });
+    res.status(422).json({ error: "Fill in all the details" });
   }
-
   try {
     const preuser = await userdb.findOne({ email: email });
-
     if (preuser) {
-      return res.status(422).json({ error: "Email already exists" });
+      res.status(422).json({ error: "Email already exists" });
     } else {
       const finalUser = new userdb({
         fname,
@@ -24,17 +21,10 @@ exports.signup = async (req, res) => {
         password,
       });
 
-      // Hash the password before saving it
-      const salt = await bcrypt.genSalt(10);
-      finalUser.password = await bcrypt.hash(password, salt);
-
+      // Generate a token and send it in the response
+      const token = jwt.sign({ _id: finalUser._id }, process.env.JWT_SECRET);
       const storeData = await finalUser.save();
-
-      // Generate a token
-      const token = jwt.sign({ _id: storeData._id }, process.env.JWT_SECRET);
-
-      // Send both the token and user data in the response
-      res.status(201).json({ status: 201, result: { token, user: storeData } });
+      res.status(201).json({ status: 201, result: { token } });
     }
   } catch (error) {
     console.error(error);
