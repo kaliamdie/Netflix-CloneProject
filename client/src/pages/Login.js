@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 
-function Login() {
+function Login({email}) {
   const history = useNavigate();
   const [inpval, setInpval] = useState({
-    email: "",
+    email: email,
     password: "",
   });
   const [error, setError] = useState("");

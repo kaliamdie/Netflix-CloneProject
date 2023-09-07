@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import Login from "./Login";
 
-
 export default function Home() {
   const [signin, setSignin] = useState(false);
+  const [email, setEmail] = useState("");
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
 
-  
   return (
     <div className="relative w-screen h-screen overflow-hidden">
-    
       <img
         className="object-cover w-full h-full absolute inset-0"
         src="https://www.okynemedialab.com/wp-content/uploads/2019/11/netflix-background-50-Black-1024x576.jpg"
@@ -19,12 +20,10 @@ export default function Home() {
 
       <div className="absolute top-0 left-0 mt-4 ml-4">
         <img src={logo} alt="Netflix Logo" className="w-32 h-16" />
-
-      
       </div>
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
         {signin ? (
-           <Login />
+          <Login email={email} /> 
         ) : (
           <div className="body flex flex-col items-center justify-center mt-30">
             <div className="text flex flex-col">
@@ -48,6 +47,8 @@ export default function Home() {
                   name="email"
                   className="border border-black text-black px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black"
                   placeholder="Enter your email"
+                  value={email} // Bind the input value to the email state
+                  onChange={handleEmailChange} // Update the email state on change
                 />
                 <button
                   onClick={() => setSignin(true)}

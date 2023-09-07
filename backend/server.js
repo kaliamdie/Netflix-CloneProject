@@ -11,7 +11,14 @@ const router = require("./routes/router");
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+
+const corsOptions = {
+    origin: "http://localhost:3000", // Replace with your development server's URL
+    credentials: true, // Include cookies and other credentials in the request
+  };
+  
+  app.use(cors(corsOptions));
+  
 
 // Connect to the database
 connectDB();
