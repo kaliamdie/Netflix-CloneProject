@@ -31,7 +31,7 @@ export default function Netflix() {
     });
 
     const data = await res.json();
-console
+
     if (data.status === 401 || !data) {
       history("/error");
     } else {
