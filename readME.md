@@ -10,9 +10,7 @@ The Netflix Clone Project is a full-stack web application that allows users to b
 
   ## Netflix
   ![screenshot](netflix.png)
-## Planning
-[trello board](https://trello.com/b/Fykm00RJ/mod-3-project)
-![trello](trello.png)
+
   ## Live Demo
 - [NetflixClone](https://netflix-project.onrender.com/)
 # Netflix Clone Frontend

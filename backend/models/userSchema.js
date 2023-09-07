@@ -46,7 +46,7 @@ userSchema.methods.generateAuthtoken=async function (){
         let token2 = jwt.sign({ _id: this._id,} ,process.env.JWT_SECRET , { expiresIn: "1d" });
         this.tokens = this.tokens.concat({ token: token2 });
         await this.save();
-        return token2; // Corrected the variable name here
+        return token2; 
       } catch (error) {
         // Handle the error
   res.status(422).json(error)
