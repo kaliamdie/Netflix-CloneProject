@@ -76,7 +76,7 @@ User Authentication is a component of the application that handles user registra
 - [GeeksforGeeks](https://www.geeksforgeeks.org/basic-authentication-in-node-js-using-http-header/) 
 - [freecodecamp](https://www.freecodecamp.org/news/tag/authentication/)
 - [medium](https://medium.com/@ballerbytes/netflix-fullstack-clone-2023-8a35e23d5db0)
-- [Net Ninga](https://netninja.dev/) for styling
+- [Net Ninja](https://netninja.dev/) for styling
 
 ## Features
 
