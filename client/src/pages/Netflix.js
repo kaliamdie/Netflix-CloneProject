@@ -31,11 +31,12 @@ export default function Netflix() {
     });
 
     const data = await res.json();
-
+console.log(res)
     if (data.status === 401 || !data) {
       history("/error");
     } else {
-      console.log("user verified");
+   
+      console.log("User Data:", data.ValidUserOne); 
       history("/netflix");
     }
   };
