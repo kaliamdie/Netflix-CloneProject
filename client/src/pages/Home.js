@@ -47,8 +47,8 @@ export default function Home() {
                   name="email"
                   className="border border-black text-black px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black"
                   placeholder="Enter your email"
-                  value={email} // Bind the input value to the email state
-                  onChange={handleEmailChange} // Update the email state on change
+                  value={email} 
+                  onChange={handleEmailChange} 
                 />
                 <button
                   onClick={() => setSignin(true)}
